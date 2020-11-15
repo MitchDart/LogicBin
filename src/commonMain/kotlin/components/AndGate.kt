@@ -2,8 +2,10 @@ package components
 
 import EventBus
 import EventIOHover
+import com.soywiz.korge.input.draggable
 import com.soywiz.korge.input.mouse
 import com.soywiz.korge.input.onClick
+import com.soywiz.korge.input.onMouseDrag
 import com.soywiz.korge.view.*
 import com.soywiz.korim.color.Colors
 import com.soywiz.korinject.AsyncInjector
@@ -22,20 +24,13 @@ fun Container.andGate(andGate: AndGate,injector: AsyncInjector,callback : @ViewD
 class AndGate() : LogicComponent() {
     val color = Colors.RED
 
-    inner class AndGateView(injector: AsyncInjector) : FixedSizeContainer(160.0,160.0, true) {
+    inner class AndGateView(injector: AsyncInjector) : LogicComponentView(injector) {
         init {
-            gateGraphics(GateShape.AND_GATE ,160.0, 30.0) {}
-            LogicBinModule.coroutineScope.launchImmediately {
-                val bus = injector.get<EventBus>()
-                mouse {
-                    over {
-                        bus.send(EventIOHover())
-                    }
-                }
 
-                bus.register(EventIOHover::class) {
-                    solidRect(width,height,color)
-                }
+        }
+        override suspend fun onLogicComponentViewInit() {
+            mouse {
+                draggable()
             }
         }
     }

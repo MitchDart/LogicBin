@@ -1,4 +1,5 @@
 import com.soywiz.korge.scene.Module
+import com.soywiz.korgw.GameWindow
 import com.soywiz.korim.color.Colors
 import com.soywiz.korim.color.RGBA
 import com.soywiz.korinject.AsyncInjector
@@ -18,10 +19,14 @@ object LogicBinModule : Module() {
     override val mainScene = CanvasScene::class
     override val size = SizeInt(1280, 720) // Virtual Size
     override val windowSize = SizeInt(1280, 720) // Window Size
+    override val targetFps: Double
+        get() = 60.0
+    override val quality: GameWindow.Quality
+        get() = GameWindow.Quality.AUTOMATIC
 
     override suspend fun AsyncInjector.configure() {
         mapInstance(EventBus(coroutineScope))
-        mapPrototype { CanvasScene(get()) }
+        mapPrototype { CanvasScene() }
 
         //Components
     }

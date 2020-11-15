@@ -9,9 +9,10 @@ import com.soywiz.korim.vector.Shape
 import com.soywiz.korma.geom.vector.VectorBuilder
 import com.soywiz.korma.geom.vector.circle
 
-fun Container.gateGraphics(shape: GateShape,size: Double, padding: Double,callback : @ViewDslMarker GateGraphics.() -> Unit) = GateGraphics(shape, size, padding).addTo(this, callback)
+fun Container.gateGraphics(shape: GateShape,size: Double, padding: Double,callback : @ViewDslMarker GateGraphics.() -> Unit = {}) = GateGraphics(shape, size, padding).addTo(this, callback)
 class GateGraphics(shape: GateShape, size: Double, padding: Double) : Graphics(true) {
     init {
+
         //Set Padding
         x = padding
         y = padding
