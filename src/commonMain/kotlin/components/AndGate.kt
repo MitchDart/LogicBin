@@ -1,32 +1,41 @@
 package components
 
-import com.soywiz.klock.TimeSpan
+import EventBus
+import EventIOHover
+import com.soywiz.korge.input.mouse
+import com.soywiz.korge.input.onClick
 import com.soywiz.korge.view.*
 import com.soywiz.korim.color.Colors
-import com.soywiz.korim.vector.Context2d
+import com.soywiz.korinject.AsyncInjector
+import com.soywiz.korinject.injector
+import com.soywiz.korinject.withInjector
+import com.soywiz.korio.async.launchImmediately
 import graphics.GateShape
-import graphics.Theme
 import graphics.gateGraphics
+import kotlinx.coroutines.Dispatchers
 
 /**
  * And gate component with fixed size (Maybe dynamic size in the future?)
  */
-fun Container.andGate(callback : @ViewDslMarker AndGate.() -> Unit) = AndGate().addTo(this, callback)
-class AndGate : FixedSizeContainer(160.0,160.0, true) {
-    init {
-        //Set graphics
-        gateGraphics(GateShape.AND_GATE ,160.0, 30.0) {
+fun Container.andGate(andGate: AndGate,injector: AsyncInjector,callback : @ViewDslMarker AndGate.AndGateView.() -> Unit) = andGate.AndGateView(injector).addTo(this,callback)
 
-            //Draw inputs
-            stroke(Theme.COMPONENT_BORDER_COLOR, Context2d.StrokeInfo(thickness = Theme.COMPONENT_BORDER_THICKNESS_RATIO * 100.0)) {
-                moveTo(80.0,50.0)
-                lineTo(100.0,50.0)
+class AndGate() : LogicComponent() {
+    val color = Colors.RED
 
-                moveTo(0.0,33.3)
-                lineTo(10.0,33.3)
+    inner class AndGateView(injector: AsyncInjector) : FixedSizeContainer(160.0,160.0, true) {
+        init {
+            gateGraphics(GateShape.AND_GATE ,160.0, 30.0) {}
+            LogicBinModule.coroutineScope.launchImmediately {
+                val bus = injector.get<EventBus>()
+                mouse {
+                    over {
+                        bus.send(EventIOHover())
+                    }
+                }
 
-                moveTo(0.0,66.6)
-                lineTo(10.0,66.6)
+                bus.register(EventIOHover::class) {
+                    solidRect(width,height,color)
+                }
             }
         }
     }

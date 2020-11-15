@@ -14,17 +14,7 @@ class NAndGate : FixedSizeContainer(160.0,160.0, true) {
     init {
         //Set graphics
         gateGraphics(GateShape.NAND_GATE ,160.0, 30.0) {
-            //Draw inputs
-            stroke(Theme.COMPONENT_BORDER_COLOR, Context2d.StrokeInfo(thickness = Theme.COMPONENT_BORDER_THICKNESS_RATIO * 100.0)) {
-                moveTo(90.0,50.0)
-                lineTo(100.0,50.0)
 
-                moveTo(0.0,33.3)
-                lineTo(10.0,33.3)
-
-                moveTo(0.0,66.6)
-                lineTo(10.0,66.6)
-            }
         }
     }
 }
