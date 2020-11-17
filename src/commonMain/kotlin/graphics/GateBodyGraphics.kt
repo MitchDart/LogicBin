@@ -18,14 +18,14 @@ class GateGraphics(shape: GateShape, size: Double, padding: Double) : Graphics(t
 
         //Draw IO lines
         stroke(Theme.COMPONENT_BORDER_COLOR, Context2d.StrokeInfo(thickness = Theme.COMPONENT_BORDER_THICKNESS_RATIO * s)) {
-            moveTo(0.8*s,0.5*s)
+            moveTo(0.5*s,0.5*s)
             lineTo(1.0*s,0.5*s)
 
             moveTo(0.0*s,0.333*s)
-            lineTo(0.2*s,0.333*s)
+            lineTo(0.5*s,0.333*s)
 
             moveTo(0.0*s,0.666*s)
-            lineTo(0.2*s,0.666*s)
+            lineTo(0.5*s,0.666*s)
         }
 
         //Fill background
