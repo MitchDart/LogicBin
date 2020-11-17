@@ -1,3 +1,4 @@
-class EventIOHover
+import components.LogicComponentView
 
-class ChristiaanEvent
+class EventIOHover(val view: LogicComponentView)
+class EventGateHover(val view: LogicComponentView)

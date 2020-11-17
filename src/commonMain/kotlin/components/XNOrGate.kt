@@ -1,29 +1,22 @@
 package components
 
-import com.soywiz.korge.view.*
-import com.soywiz.korim.vector.Context2d
+import com.soywiz.korge.input.draggable
+import com.soywiz.korge.input.mouse
+import com.soywiz.korge.view.Container
+import com.soywiz.korge.view.ViewDslMarker
+import com.soywiz.korge.view.addTo
+import com.soywiz.korinject.AsyncInjector
 import graphics.GateShape
-import graphics.Theme
-import graphics.gateGraphics
 
-/**
- * And gate component with fixed size (Maybe dynamic size in the future?)
- */
+fun Container.xNorGate(gate: XNOrGate, injector: AsyncInjector, callback: @ViewDslMarker XNOrGate.XNorGateView.() -> Unit = {}) = gate.XNorGateView(injector).addTo(this, callback)
 
+class XNOrGate : LogicComponent() {
 
-
-fun Container.xnorGate(callback : XNOrGate.() -> Unit) {
-    XNOrGate().addTo(this, callback)
-}
-
-
-
-class XNOrGate : FixedSizeContainer(160.0,160.0, true) {
-    init {
-        //Set graphics
-        gateGraphics(GateShape.XNOR_GATE ,160.0, 30.0) {
-
+    inner class XNorGateView(injector: AsyncInjector) : LogicComponentView(injector, gateShape = GateShape.XNOR_GATE) {
+        override suspend fun onLogicComponentViewInit() {
+            mouse {
+                draggable()
+            }
         }
-
     }
 }

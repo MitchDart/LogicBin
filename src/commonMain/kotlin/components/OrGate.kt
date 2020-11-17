@@ -1,10 +1,8 @@
 package components
 
 import com.soywiz.korge.view.*
-import com.soywiz.korim.vector.Context2d
 import graphics.GateShape
-import graphics.Theme
-import graphics.gateGraphics
+import graphics.gateBodyGraphics
 
 /**
  * And gate component with fixed size (Maybe dynamic size in the future?)
@@ -13,7 +11,7 @@ fun Container.orGate(callback : @ViewDslMarker OrGate.() -> Unit) = OrGate().add
 class OrGate : FixedSizeContainer(160.0,160.0, true) {
     init {
         //Set graphics
-        gateGraphics(GateShape.OR_GATE ,160.0, 30.0) {
+        gateBodyGraphics(GateShape.OR_GATE ,160.0, 30.0) {
 
         }
     }
