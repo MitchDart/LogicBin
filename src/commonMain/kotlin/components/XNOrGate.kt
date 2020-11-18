@@ -6,9 +6,10 @@ import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.ViewDslMarker
 import com.soywiz.korge.view.addTo
 import com.soywiz.korinject.AsyncInjector
+import com.soywiz.korinject.injector
 import graphics.GateShape
 
-fun Container.xNorGate(gate: XNOrGate, injector: AsyncInjector, callback: @ViewDslMarker XNOrGate.XNorGateView.() -> Unit = {}) = gate.XNorGateView(injector).addTo(this, callback)
+suspend fun Container.xNorGate(gate: XNOrGate, callback: @ViewDslMarker XNOrGate.XNorGateView.() -> Unit = {}) = gate.XNorGateView(injector()).addTo(this, callback)
 
 class XNOrGate : LogicComponent() {
 

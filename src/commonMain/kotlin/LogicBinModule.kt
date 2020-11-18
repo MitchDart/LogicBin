@@ -20,7 +20,7 @@ object LogicBinModule : Module() {
     override val size = SizeInt(1280, 720) // Virtual Size
     override val windowSize = SizeInt(1280, 720) // Window Size
     override val targetFps: Double
-        get() = 60.0
+        get() = 144.0
     override val quality: GameWindow.Quality
         get() = GameWindow.Quality.AUTOMATIC
 
