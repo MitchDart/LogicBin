@@ -27,8 +27,6 @@ object LogicBinModule : Module() {
     override suspend fun AsyncInjector.configure() {
         mapInstance(EventBus(coroutineScope))
         mapPrototype { CanvasScene() }
-
-        //Components
     }
 
     override val title: String

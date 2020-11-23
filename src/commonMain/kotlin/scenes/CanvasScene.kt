@@ -1,9 +1,5 @@
 package scenes
 
-import com.soywiz.korge.component.docking.sortChildrenBy
-import com.soywiz.korge.input.draggable
-import com.soywiz.korge.input.mouse
-import com.soywiz.korge.input.onMouseDrag
 import com.soywiz.korge.scene.Scene
 import com.soywiz.korge.view.*
 import com.soywiz.korio.async.launchImmediately
@@ -13,7 +9,7 @@ import graphics.wireGraphics
 
 class CanvasScene : Scene() {
     override suspend fun Container.sceneInit() {
-        container() {
+        container {
             launchImmediately {
                 val halfContainerWidth = views.virtualWidth/2
                 val halfContainerHeight = views.virtualHeight/2
@@ -28,7 +24,7 @@ class CanvasScene : Scene() {
                     y = halfContainerHeight - (height/2) - 100
                 }
 
-                wireGraphics{
+                wireGraphics {
                     addUpdater {
                         startX = andGateView.x + andGateView.outputAX + Theme.COMPONENT_IO_POINT_SIZE*1.3
                         startY = andGateView.y + andGateView.outputAY + Theme.COMPONENT_IO_POINT_SIZE*1.3
@@ -39,8 +35,9 @@ class CanvasScene : Scene() {
                     }
                 }
 
-                addChild(andGateView)
+                     addChild(andGateView)
                 addChild(xnorGateView)
+
             }
         }
     }
