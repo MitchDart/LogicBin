@@ -15,9 +15,6 @@ class XNOrGate : LogicComponent() {
 
     inner class XNorGateView(injector: AsyncInjector) : LogicComponentView(injector, gateShape = GateShape.XNOR_GATE) {
         override suspend fun onLogicComponentViewInit() {
-            mouse {
-                draggable()
-            }
         }
     }
 }

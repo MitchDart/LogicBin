@@ -23,6 +23,8 @@ object LogicBinModule : Module() {
         get() = 144.0
     override val quality: GameWindow.Quality
         get() = GameWindow.Quality.AUTOMATIC
+    override val clipBorders: Boolean
+        get() = false
 
     override suspend fun AsyncInjector.configure() {
         mapInstance(EventBus(coroutineScope))

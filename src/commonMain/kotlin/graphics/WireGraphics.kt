@@ -7,7 +7,7 @@ import com.soywiz.korma.geom.vector.circle
 import com.soywiz.korma.geom.vector.cubic
 
 fun Container.wireGraphics(callback: @ViewDslMarker WireGraphics.() -> Unit = {}) = WireGraphics().addTo(this, callback)
-class WireGraphics() : Graphics() {
+class WireGraphics() : Graphics(autoScaling = true) {
     val tension = 70.0
     var startX = 0.0
     var startY = 0.0

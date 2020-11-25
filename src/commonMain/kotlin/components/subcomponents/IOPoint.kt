@@ -17,8 +17,8 @@ import graphics.ioGraphics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
-fun LogicComponentView.ioPoint(bus: EventBus, callback : @ViewDslMarker IOPoint.() -> Unit = {}) = IOPoint(bus).addTo(this, callback)
-class IOPoint(bus: EventBus): FixedSizeContainer(Theme.COMPONENT_IO_POINT_SIZE*2*1.3,Theme.COMPONENT_IO_POINT_SIZE*2*1.3) {
+fun LogicComponentView.ioPoint(callback : @ViewDslMarker IOPoint.() -> Unit = {}) = IOPoint().addTo(this, callback)
+class IOPoint: FixedSizeContainer(Theme.COMPONENT_IO_POINT_SIZE*2*1.3,Theme.COMPONENT_IO_POINT_SIZE*2*1.3) {
     var isHover = false
     private val animationContext = CoroutineScope(Dispatchers.Default)
 
